@@ -1,0 +1,121 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Readme2txt",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/data/top100/readme2txt.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "args": [
+                "--lang",
+                "java",
+                "--readme_path",
+                "${workspaceFolder}/data/ReadMes/README-Java.md",
+                "--output_path",
+                "${workspaceFolder}/data/top100"
+            ]
+        },
+        {
+            "name": "GitCloner",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/gitcloner.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "args": [
+                "--repositories",
+                "${workspaceFolder}/data/top100/ruby.txt",
+                "--repos_dir",
+                "${workspaceFolder}/data/repositories/ruby",
+            ]
+        },
+        {
+            "name": "GitParser",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/gitparser.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "args": [
+                "--repositories",
+                "${workspaceFolder}/data/top100/ruby.txt",
+                "--repos_dir",
+                "${workspaceFolder}/data/repositories/ruby",
+                "--output_dir",
+                "${workspaceFolder}/data/top100/ruby",
+                "--lang",
+                "ruby",
+                "--num_workers",
+                "16"
+            ]
+        },
+        {
+            "name": "Train Top100",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/run.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "HF_HOME": "${workspaceFolder}",
+            },
+            "args": [
+                "--lang",
+                "python",
+                "--do_train",
+                "--do_eval",
+                "--do_test",
+                "--model_type",
+                "roberta",
+                "--model_name_or_path",
+                "microsoft/codebert-base",
+                "--load_model_path",
+                "output/python/20231015_143112/checkpoint-best-bleu/pytorch_model.bin",
+                "--train_filename",
+                "${workspaceFolder}/data/top100/python/train.jsonl",
+                "--dev_filename",
+                "${workspaceFolder}/data/top100/python/valid.jsonl",
+                "--test_filename",
+                "${workspaceFolder}/data/top100/python/test.jsonl",
+                "--output_dir",
+                "${workspaceFolder}/output",
+                "--max_source_length",
+                "256",
+                "--max_target_length",
+                "128",
+                "--beam_size",
+                "10",
+                "--train_batch_size",
+                "8",
+                "--eval_batch_size",
+                "8",
+                "--learning_rate",
+                "5e-5",
+                "--num_train_epochs",
+                //"10",
+                "3",
+                "--eval_steps",
+                "1000",
+                "--num_decoder_layer",
+                "6",
+                "--max_grad_norm",
+                "2.0",
+                "--gradient_accumulation_steps",
+                "32",
+            ]
+        },
+        {
+            "name": "NotMyCode",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+        },
+    ]
+}

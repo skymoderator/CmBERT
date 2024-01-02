@@ -1,0 +1,28 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.bin
+
+
+# Model Weights
+*.bin
+
+# Model Evaluation
+*.gold
+*.output
+
+# Dataset
+*.jsonl
+
+# HuggingFace
+hub/
+
+# Environments
+.venv
+
+# Plot Dataset
+plot_dataset.csv
+
+# wandb
+wandb/
